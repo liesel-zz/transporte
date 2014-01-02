@@ -1,0 +1,12 @@
+Pegar dados da Location
+
+<div ng-address-bar browser="html5"></div>
+<br> $location.protocol() = {{$location.protocol()}}
+<br> $location.host() = {{$location.host()}}
+<br> $location.port() = {{$location.port()}}
+<br> $location.path() = {{$location.path()}}
+<br> $location.search() = {{$location.search()}}
+<br> $location.hash() = {{$location.hash()}}
+
+Pegar um parametro na url chamada de key ex: /Transporte/index#/resetarSenha?key=9e34e79b-1f41-44fe-b808-85a35096855c
+<br> ($location.search()).key = {{($location.search()).key}}

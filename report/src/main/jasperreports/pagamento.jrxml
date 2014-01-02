@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagamento" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="4136796e-aa31-45da-969e-5e4182f8dd55">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parcelas" class="java.lang.Object"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../report/"]]></defaultValueExpression>
+	</parameter>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="dde0bd72-6b68-41ed-b68a-f57d9542976f" x="0" y="0" width="595" height="14"/>
+				<dataSourceExpression><![CDATA[$P{parcelas}]]></dataSourceExpression>
+				<subreportExpression><![CDATA["parcelaPagamento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

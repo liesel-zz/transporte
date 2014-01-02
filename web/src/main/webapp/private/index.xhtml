@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" ng-app="transporte">
+
+<h:head>
+
+	<!-- start: Meta -->
+	<meta charset="utf-8" />
+	<title>TexoIT Transportes</title>
+	<meta name="description" content="TexoIT Transportes" />
+	<!-- end: Meta -->
+
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- end: Mobile Specific -->
+
+
+	<!-- start: CSS -->
+	<link href="#{request.contextPath}/css/base.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/bootstrap-responsive.min.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/bootstrap-modal.css"	rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/style.min.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/style-responsive.min.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/retina.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/css/bootstrap-datetimepicker.min.css" rel="stylesheet"></link>
+	<link href="#{request.contextPath}/js/libs/select2/select2.css"	rel="stylesheet"></link>
+	<!-- end: CSS -->
+
+
+	<!-- start: JavaScript-->
+	<script src="#{request.contextPath}/js/jquery-1.9.1.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery-migrate-1.0.0.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.ui.touch-punch.js"></script>
+	<script src="#{request.contextPath}/js/modernizr.js"></script>
+	<script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="#{request.contextPath}/js/bootstrap-modal.js"></script>
+	<script src="#{request.contextPath}/js/bootstrap-modalmanager.js"></script>
+	<script src="#{request.contextPath}/js/jquery.cookie.js"></script>
+	<script src='#{request.contextPath}/js/fullcalendar.min.js'></script>
+	<script src='#{request.contextPath}/js/jquery.dataTables.min.js'></script>
+	<script src="#{request.contextPath}/js/excanvas.js"></script>
+	<script src="#{request.contextPath}/js/jquery.flot.js"></script>
+	<script src="#{request.contextPath}/js/jquery.flot.pie.js"></script>
+	<script src="#{request.contextPath}/js/jquery.flot.stack.js"></script>
+	<script src="#{request.contextPath}/js/jquery.flot.resize.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.flot.time.js"></script>
+
+	<script src="#{request.contextPath}/js/gauge.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.chosen.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.uniform.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.cleditor.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.noty.js"></script>
+	<script src="#{request.contextPath}/js/jquery.elfinder.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.raty.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.iphone.toggle.js"></script>
+	<script src="#{request.contextPath}/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.gritter.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.imagesloaded.js"></script>
+	<script src="#{request.contextPath}/js/jquery.masonry.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.knob.modified.js"></script>
+	<script src="#{request.contextPath}/js/jquery.sparkline.min.js"></script>
+	<script src="#{request.contextPath}/js/counter.min.js"></script>
+	<script src="#{request.contextPath}/js/raphael.2.1.0.min.js"></script>
+	<script src="#{request.contextPath}/js/justgage.1.0.1.min.js"></script>
+	<script src="#{request.contextPath}/js/jquery.autosize.min.js"></script>
+	<script src="#{request.contextPath}/js/retina.js"></script>
+	<script src="#{request.contextPath}/js/jquery.placeholder.min.js"></script>
+	<script src="#{request.contextPath}/js/wizard.min.js"></script>
+	<script src="#{request.contextPath}/js/core.min.js"></script>
+	<script src="#{request.contextPath}/js/charts.min.js"></script>
+	<script src="#{request.contextPath}/js/custom.min.js"></script>
+	<script src="#{request.contextPath}/js/moment.min.js"></script>
+	<!-- end: JavaScript-->
+
+	<script src="#{request.contextPath}/js/libs/select2/select2.js"></script>
+	<script	src="#{request.contextPath}/js/libs/select2/select2_locale_pt-BR.js"></script>
+	<script src="#{request.contextPath}/js/libs/angular.js"></script>
+	<script src="#{request.contextPath}/js/libs/angular-resource.js"></script>
+	<script src="#{request.contextPath}/js/libs/select2.js"></script>
+	<!-- 	<script src="#{request.contextPath}/js/libs/angular-ui.js"></script> -->
+	<script src="#{request.contextPath}/js/libs/angular-strap.min.js"></script>
+	<script src="#{request.contextPath}/js/libs/ui-utils.js"></script>
+	<script
+		src="#{request.contextPath}/js/libs/bootstrap-datetimepicker.min.js"></script>
+	<script
+		src="#{request.contextPath}/js/libs/bootstrap-datetimepicker.pt-BR.js"></script>
+	<script src="#{request.contextPath}/js/ui-bootstrap-tpls-0.4.0.js"></script>
+
+	<!-- Load the application wide JS, such as route definitions -->
+	<script src="#{request.contextPath}/js/private/privateAPP.js"></script>
+
+	<!-- Load the directives for our app -->
+	<script src="#{request.contextPath}/js/directives.js"></script>
+
+	<!-- Load the services we have defined for the application, particularly the REST services -->
+	<script src="#{request.contextPath}/js/services.js"></script>
+
+	<!-- FIXME LEVAR PARA APLICAÇÃO TRANSPORTE -->
+	<!-- Load the controllers for our app -->
+	<script src="#{request.contextPath}/private/administration/user/userController.js"></script>
+	<script src="#{request.contextPath}/private/crud/cliente/clienteController.js"></script>
+	<script src="#{request.contextPath}/private/administration/role/roleController.js"></script>
+	<script src="#{request.contextPath}/private/administration/plan/planController.js"></script>
+	<script src="#{request.contextPath}/private/dashboard/dashboardController.js"></script>	
+	<script src="#{request.contextPath}/private/crud/instituicao/instituicaoController.js"></script>
+	<script src="#{request.contextPath}/private/crud/estudante/estudanteController.js"></script>
+	<script src="#{request.contextPath}/private/crud/contrato/contratoController.js"></script>
+	<script src="#{request.contextPath}/private/administration/perfil/perfilController.js"></script>
+	<script src="#{request.contextPath}/private/action/pagamento/pagamentoController.js"></script>
+
+<!-- 	<script type="text/javascript" -->
+<!-- 		src="http://services.maplink.com.br/maplinkapi2/api.ashx?v=4&amp;key=GKdPauFyd0LPTLvrGMkvaLV1bAZPw09sGL29QR=="></script> -->
+	
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+
+	<!--[if IE 9]>
+		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	
+</h:head>
+
+<h:body>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+					</a> <a id="main-menu-toggle" class="hidden-phone open"><i
+						class="icon-reorder"></i></a>
+					<div class="row-fluid">
+						<a class="brand span2" href="index.html"><span>TexoIT
+								Transporte</span></a>
+					</div>
+					<!-- start: Header Menu -->
+					<div class="nav-no-collapse header-nav">
+						<ul class="nav pull-right">
+							<li><a class="btn" href="#"> <i class="icon-wrench"></i>
+							</a></li>
+							<!-- start: User Dropdown -->
+							<li class="dropdown"><a class="btn account dropdown-toggle"
+								data-toggle="dropdown" href="#">
+									<div class="avatar">
+										<img
+											src="data:image/png;base64, #{homeController.getLoggedUser().image}"
+											alt="Avatar" />
+									</div>
+									<div class="user">
+										<span class="hello">Bem-Vindo!</span> <span class="name">#{homeController.getLoggedUser().name}</span>
+									</div>
+							</a>
+								<ul class="dropdown-menu">
+									<li class="dropdown-menu-title"></li>
+									<li ng-controller="PerfilCtrl">
+										<a href="#perfilModal" ng-click="findLoggedUser()" data-toggle="modal"><i class="icon-user"></i> Perfil</a>
+									
+										<!-- Modal Perfil -->
+										<div id="perfilModal" class="modal hide fade"
+											role="dialog" aria-labelledby="perfilModalLabel" aria-hidden="true">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">×</button>
+												<h3 id="perfilModalLabel">Perfil</h3>
+											</div>
+											<div class="modal-body">
+												<div class="box-content">
+													<form class="form-horizontal">
+														<tabset>
+											    			<tab heading="Geral">
+																<fieldset>
+																	<div class="control-group">
+																		<label class="control-label" for="userInput">Nome</label>
+																		<div class="controls">
+																			<input id="userInput" size="16" type="text"
+																				ng-model="loggedUser.name"/>
+																		</div>
+																	</div>
+																	<div class="control-group">
+																		<label class="control-label" for="emailInput">Email</label>
+																		<div class="controls">
+																			<input id="emailInput" size="16" type="email"
+																				ng-model="loggedUser.email"/>
+																		</div>
+																	</div>
+												
+																	<div class="control-group">
+																		<label class="control-label" for="passwordInput">Senha</label>
+																		<div class="controls">
+																			<input id="passwordInput" size="512" type="password"
+																				ng-model="loggedUser.password"/>
+																		</div>
+																	</div>
+												
+																	<div class="control-group">
+																		<label class="control-label" for="dtBirthday">Aniversário</label>
+																		<div class="controls">
+																			<div class="input-append date mks-datepicker">
+																				<input id="dtBirthday" type="text" ng-model="loggedUser.birthDay" />
+																				<span class="add-on"> <i class="item-calendar"
+																					data-time-icon="icon-time" data-date-icon="icon-calendar">
+																				</i>
+																				</span>
+																			</div>
+																		</div>
+																	</div>
+																</fieldset>
+															</tab>
+															<tab heading="Transportador" ng-show="#{request.isUserInRole('Transportador')}">
+																<fieldset>
+																	<div class="control-group">
+																		<label class="control-label" for="transpInput">Transportador</label>
+																		<div class="controls">
+																			<input id="transpInput" type="text" ng-model="userTransportadora.nome"/>
+																		</div>
+																	</div>
+																	<div class="control-group">
+																		<label class="control-label" for="emailTranspInput">Email</label>
+																		<div class="controls">
+																			<input id="emailTranspInput" type="email" ng-model="userTransportadora.email"/>
+																		</div>
+																	</div>
+																
+																	<div class="control-group">
+																		<label class="control-label" for="cgcInput">CPF/CNPJ</label> 
+																	  	<div class="controls"> 
+																	  		<div class="input-append">
+																				<input id="cgcInput" type="text" ui-mask="{{maskCGC}}" ng-model="userTransportadora.cgc" 
+																					ng-init="cgcInit()" class="span2"/>
+																				<button class="btn" type="button" ng-click="typeCGCChange()">{{cgcType}}</button>			  
+																  			</div>
+																  		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="rgInput">RG</label> 
+																	  	<div class="controls"> 
+																			<input id="rgInput" type="text" ng-model="userTransportadora.rg" class="span2"/>							  
+																  		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="telefoneInput">Telefone</label>
+																		<div class="controls">
+																			<input id="telefoneInput" type="text" ui-mask="(99) 9999-9999" 
+																				ng-model="userTransportadora.telefone" class="span2"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="celularInput">Celular</label>
+																		<div class="controls">
+																			<input id="celularInput" type="text" ui-mask="(99) 9999-9999?9" 
+																				ng-model="userTransportadora.celular" class="span2"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="associacaoInput">Associação</label>
+																		<div class="controls">
+																			<input id="associacaoInput" ui-select2="associacaoFKOpt" ng-model="userTransportadora.associacao" type="hidden" class="span3"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="vanInput">Cód. Van</label>
+																		<div class="controls">
+																			<input id="vanInput" type="text" class="span2"
+																				ng-model="userTransportadora.codVan"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="placaInput">Placa Van</label>
+																		<div class="controls">
+																			<input id="placaInput" type="text" class="span2"
+																				ng-model="userTransportadora.placaVan"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="imgInput">Logotipo</label>
+																	    <div class="controls">
+																            <img id="imgPerfil" style="width:80px; heigth:80px"></img>
+																            <br/>
+																            <input id="imgInput" type="file" class="file-upload" accept="image/*"/>
+																	    </div>
+																	</div>
+																</fieldset>
+															</tab>
+															<tab heading="Endereço" ng-show="#{request.isUserInRole('Transportador')}">
+																<fieldset>
+																	<div class="control-group">
+																		<label class="control-label" for="cepInput">CEP</label>
+																		<div class="controls">
+																			<input id="cepInput" class="span2" type="text" ng-blur="cepBlur(userTransportadora.endereco.cep)"
+																				ui-mask="99999-999" ng-model="userTransportadora.endereco.cep"/>
+																		</div>
+																	</div>
+																
+																	<div class="control-group">
+																		<label class="control-label" for="enderecoInput">Endereço</label>
+																		<div class="controls">
+																			<input id="enderecoInput" type="text"
+																				ng-model="userTransportadora.endereco.endereco"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="numeroInput">Número</label>
+																		<div class="controls">
+																			<input id="numeroInput" class="span1" type="number" min="0"
+																				ng-model="userTransportadora.endereco.numero"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="complementoInput">Complemento</label>
+																		<div class="controls">
+																			<input id="complementoInput" type="text"
+																				ng-model="userTransportadora.endereco.complemento"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="bairroInput">Bairro</label>
+																		<div class="controls">
+																			<input id="bairroInput" type="text"
+																				ng-model="userTransportadora.endereco.bairro"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="cidadeInput">Cidade</label>
+																		<div class="controls">
+																			<input id="cidadeInput" type="text"
+																				ng-model="userTransportadora.endereco.cidade"/>
+																		</div>
+																	</div>
+										
+																	<div class="control-group">
+																		<label class="control-label" for="estadoInput">UF</label>
+																		<div class="controls">
+																			<select id="estadoInput" ui-select2="{allowClear:false}" ng-model="userTransportadora.endereco.uf" class="span2" data-placeholder="Escolha um estado">
+																			    <option value=""></option>
+																			    <option ng-repeat="state in ufList" value="{{state.id}}">{{state.name}}</option>
+																			</select>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label" for="paisInput">País</label>
+																		<div class="controls">
+																			<input id="paisInput" type="text"
+																				ng-model="userTransportadora.endereco.pais"/>
+																		</div>
+																	</div>
+																	
+																	<div class="control-group">
+																		<label class="control-label">Situação</label>
+																		<div class="controls">
+																			<span class="label label-important" ng-show="addressChanged" title="É necessário validar o endereço" data-rel="tooltip"><i class="icon-remove-sign"></i></span>
+																			<span class="label label-success" ng-show="!addressChanged"><i class="icon-ok-sign"></i></span>
+																			<a href="#mapModal" data-toggle="modal" ng-click="validateMap()">Clique aqui</a> para validar o endereço						
+																		</div>
+																	</div>
+																</fieldset>
+															</tab>
+														</tabset>
+													</form>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button class="btn btn-primary" data-dismiss="modal" ng-click="update()" ng-disabled="addressChanged == true">Salvar</button>
+											</div>
+											
+											<!-- Modal MAPA -->
+											<div id="mapModal" class="modal hide fade" data-width="580px"
+												role="dialog" aria-labelledby="myMapModalLabel" aria-hidden="true">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-hidden="true">×</button>
+													<h3 id="myMapModalLabel">Mapa</h3>
+												</div>
+												<div class="modal-body">
+													<div class="box-content">
+														<form class="form-horizontal">
+															<fieldset>
+																<div class="control-group">
+																	<mks-map endereco="userTransportadora.endereco.endereco" numero="userTransportadora.endereco.numero" 
+																		bairro="userTransportadora.endereco.bairro" cidade="userTransportadora.endereco.cidade" 
+																		estado="userTransportadora.endereco.uf" cep="userTransportadora.endereco.cep" 
+																		latitude="userTransportadora.endereco.latitude" longitude="userTransportadora.endereco.longitude"
+																		map-name="PerfilMap"></mks-map>
+																</div>
+															</fieldset>
+														</form>
+													</div>
+												</div>
+												<div class="box-footer">
+													<button class="btn btn-primary"
+															data-dismiss="modal"
+															ng-click="validateMapOK()">OK</button>
+												</div>
+												<!-- FIM MODAL MAPA -->
+											</div>
+										</div>
+										<!-- FIM MODAL PERFIL -->
+									
+									</li>
+									<li><a href="#"><i class="icon-cog"></i> Configurações</a></li>
+									<li><a href="#{request.contextPath}/security/logout"><i class="icon-off"></i> Logout</a></li>
+								</ul></li>
+							<!-- end: User Dropdown -->
+						</ul>
+					</div>
+					<!-- end: Header Menu -->
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid-full">
+			<div class="row-fluid">
+
+				<!-- start: Main Menu -->
+				<div id="sidebar-left" class="span2">
+					<div class="nav-collapse sidebar-nav">
+						<ul class="nav nav-tabs nav-stacked main-menu">
+						
+							<li class="active"><a
+								href="#{request.contextPath}/private/index.jsf#/dashboard"> <i
+									class="icon-dashboard"></i> <span class="hidden-tablet">DashBoard</span>
+							</a></li>
+
+							<li ng-show="#{request.isUserInRole('Admin')}">
+								<a class="dropmenu" href="#"> <i
+									class="icon-folder-close-alt"></i> <span class="hidden-tablet">Segurança
+								</span> <span class="label">2</span>
+							</a>
+								<ul style="display: none;">
+									<li class="submenu"><a
+										href="#{request.contextPath}/private/index.jsf#/user"> <i
+											class="icon-user"></i> <span class="hidden-tablet">Usuários
+										</span>
+									</a></li>
+									<li class="submenu"><a
+										href="#{request.contextPath}/private/index.jsf#/role"> <i
+											class="icon-group"></i> <span class="hidden-tablet">Roles</span>
+									</a></li>
+									<li class="submenu"><a
+										href="#{request.contextPath}/private/index.jsf#/plan"> <i
+											class="icon-credit-card"></i> <span class="hidden-tablet">Planos</span>
+									</a></li>
+								</ul>
+							</li>
+
+							<li>
+ 								<a href="#{request.contextPath}/private/index.jsf#/instituicao">
+ 									<i class="icon-book"></i>
+ 									<span class="hidden-tablet">Instituições</span>
+ 								</a>
+ 							</li>
+
+
+							<li>
+								<a href="#{request.contextPath}/private/index.jsf#/cliente"> 
+									<i class="icon-briefcase"></i> 
+									<span class="hidden-tablet">Clientes</span>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#{request.contextPath}/private/index.jsf#/estudante"> 
+									<i class="icon-pencil"></i> 
+									<span class="hidden-tablet">Estudantes</span>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#{request.contextPath}/private/index.jsf#/contrato"> 
+									<i class="icon-legal"></i> 
+									<span class="hidden-tablet">Contrato</span>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#{request.contextPath}/private/index.jsf#/pagamento"> 
+									<i class="icon-money"></i> 
+									<span class="hidden-tablet">Pagamento</span>
+								</a>
+							</li>
+							
+							<li ng-show="#{request.isUserInRole('Transporte')}"><a
+								class="dropmenu" href="#"> <i class="icon-folder-close-alt"></i>
+									<span class="hidden-tablet">Transporte</span> <span
+									class="label">2</span>
+							</a>
+								<ul style="display: none;">
+									<li class="submenu"><a href="#"> <i class="icon-truck"></i>
+											<span class="hidden-tablet">Veículos</span>
+									</a></li>
+									<li class="submenu"><a href="#"> <i class="icon-road"></i>
+											<span class="hidden-tablet">Rotas</span>
+									</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<!-- end: Main Menu -->
+
+				<!-- start: Content -->
+				<div id="content" class="span10" style="min-height: 530px;">
+					<div class="ng-view"></div>
+				</div>
+				<!-- end: Content -->
+
+			</div>
+			<!--/fluid-row-->
+
+			<div class="clearfix"></div>
+			
+			<footer>
+				<p>
+					<span style="text-align: left; float: left">@ 2013 
+						<a href="http://texoit.com" alt="Texo IT">Texo Information Tecnology</a>
+					</span>
+				</p>
+		
+			</footer>
+
+		</div>
+	<!--/.fluid-container-->
+	
+	<ui:insert name="systemModals"/>
+	
+</h:body>
+
+
+</html>

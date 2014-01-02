@@ -1,0 +1,9 @@
+target
+.settings/*
+!.settings/.jsdtscope
+.project
+.classpath
+.settings
+ejb/bin/
+report/bin/
+web/bin/

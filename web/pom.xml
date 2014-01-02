@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.mksdev.framework</groupId>
+		<artifactId>framework-parent-web</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+    
+    <groupId>com.mksdev.transport</groupId>
+	<artifactId>Transporte-web</artifactId>
+	<packaging>war</packaging>
+    <version>1.0.0</version>
+	
+	<name>Transporte Web module</name>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.mksdev.transport</groupId>
+			<artifactId>Transporte-ejb</artifactId>
+			<type>ejb</type>
+			<version>1.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mksdev.transport</groupId>
+			<artifactId>Transporte-report</artifactId>
+			<type>jar</type>
+			<version>1.0.0</version>
+		</dependency>
+		
+	</dependencies>
+    
+</project>

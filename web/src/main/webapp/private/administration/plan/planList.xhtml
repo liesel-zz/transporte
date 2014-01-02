@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="row-fluid">
+
+		<!-- Inicio Filtro -->
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header">
+					<h2>
+						<i class="icon-list"></i>Resultado
+					</h2>
+				</div>
+				<div class="box-content">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Descrição</th>
+								<th>Dias para Expirar</th>
+								<th>Valor</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="plan in plans | orderBy:orderBy">
+								<td>{{plan.id}}</td>
+								<td>{{plan.name}}</td>
+								<td>{{plan.description}}</td>
+								<td>{{plan.daysForExpire}}</td>
+								<td>{{plan.value}}</td>
+								<td class="center "><a class="btn btn-info"
+									ng-click="edit(plan)" href="#modalPlan" data-toggle="modal"
+									role="button"> <i class="icon-edit"></i>
+								</a> <a class="btn btn-danger" ng-click="confirmDelete(plan)"> <i
+										class="icon-trash"></i>
+								</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="pagination pagination-centered" data-pagination=""
+						data-num-pages="numPages()" data-current-page="filter.startRow"
+						data-max-size="filter.pageSize" data-boundary-links="true">
+					</div>
+				</div>
+				<div class="box-footer">
+					<!-- Button to trigger modal -->
+					<button href="#modalPlan" class="btn btn-primary"
+						data-toggle="modal" ng-click="reset()">Novo</button>
+
+					<button class="btn primary" ng-click="findByFilter()">Atualizar</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+</div>
+<!-- end: Content -->
+
+</div>
+<!--/fluid-row -->
+
+<!-- Modal -->
+<div id="modalPlan" class="modal hide fade" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Cadastro de Planos</h3>
+	</div>
+	<div class="modal-body">
+		<div class="box-content">
+			<form class="form-horizontal" ng-submit="save()">
+				<fieldset>
+					<div class="control-group"
+						ng-class="{'error':errors.name.length > 0}">
+						<label class="control-label" for="nameInput">Nome</label>
+						<div class="controls">
+							<input id="nameInput" size="16" type="text"
+								ng-model="newPlan.name" autofocus /> <span class="help-inline"
+								ng-show="errors.name">{{errors.name}}</span>
+						</div>
+					</div>
+					<div class="control-group"
+						ng-class="{'error':errors.description.length > 0}">
+						<label class="control-label" for="descriptionInput">Descrição</label>
+						<div class="controls">
+							<input id="descriptionInput" size="16" type="text"
+								ng-model="newPlan.description" /> <span class="help-inline"
+								ng-show="errors.description">{{errors.description}}</span>
+						</div>
+					</div>
+					<div class="control-group"
+						ng-class="{'error':errors.daysForExpire.length > 0}">
+						<label class="control-label" for="daysForExpireInput">Dias
+							para Expirar</label>
+						<div class="controls">
+							<input id="daysForExpireInput" size="16" type="number"
+								ng-model="newPlan.daysForExpire" /> <span class="help-inline"
+								ng-show="errors.daysForExpire">{{errors.daysForExpire}}</span>
+						</div>
+					</div>
+					<div class="control-group"
+						ng-class="{'error':errors.value.length > 0}">
+						<label class="control-label" for="valueInput">Valor</label>
+						<div class="controls">
+							<span class="add-on">$</span><input id="valueInput" size="16"
+								type="number" ng-model="newPlan.value" /> <span
+								class="help-inline" ng-show="errors.value">{{errors.value}}</span>
+						</div>
+					</div>
+
+					<!-- We output a list of success messages (appropriately styled!) for the form. -->
+					<ul ng-hide="!successMessages" class="success">
+						<li ng-repeat="message in successMessages">{{message}}</li>
+					</ul>
+
+					<!-- Output the list of error messages if any. -->
+					<ul ng-hide="!errorMessages" class="error">
+						<li ng-repeat="message in errorMessages">{{message}}</li>
+					</ul>
+
+				</fieldset>
+
+			</form>
+
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="save()">Registrar</button>
+		<button class="btn" ng-click="reset()">Limpar</button>
+	</div>
+</div>
+
+</div>
+
+

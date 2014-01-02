@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="row-fluid">
+
+		<!-- Inicio Filtro -->
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header">
+					<h2>
+						<i class="icon-list"></i>Resultado
+					</h2>
+				</div>
+				<div class="box-content">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>Status</th>
+								<th>Último Login</th>
+								<th>Aniversário</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="user in users | orderBy:orderBy">
+								<td>{{user.id}}</td>
+								<td>{{user.name}}</td>
+								<td>{{user.email}}</td>
+								<td>{{user.status}}</td>
+								<td>{{user.lastLogin|localtime}}</td>
+								<td>{{user.birthDay|localtime}}</td>
+								<td class="center "><a class="btn btn-info"
+									ng-click="edit(user)" href="#modalUsuario" data-toggle="modal"
+									role="button"> <i class="icon-edit"></i>
+								</a> <a class="btn btn-danger" ng-click="confirmDelete(user)"> <i
+										class="icon-trash"></i>
+								</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="pagination pagination-centered" data-pagination=""
+						data-num-pages="numPages()" data-current-page="filter.startRow"
+						data-max-size="filter.pageSize" data-boundary-links="true">
+					</div>
+				</div>
+				<div class="box-footer">
+					<!-- Button to trigger modal -->
+					<button href="#modalUsuario" class="btn btn-primary"
+						data-toggle="modal" ng-click="reset()">Novo</button>
+
+					<button class="btn primary" ng-click="findByFilter()">Atualizar</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<!-- Modal -->
+	<div id="modalUsuario" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Cadastro de Usuário</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal" ng-submit="save()">
+					<fieldset>
+						<div class="control-group" ng-class="{'error':errors.email.length > 0}">
+							<label class="control-label" for="emailInput">Email</label>
+							<div class="controls">
+								<input id="emailInput" type="email"
+									ng-model="newUser.email" 
+									ng-disabled="isEditing"/> 
+								<span class="help-inline"
+									ng-show="errors.email">{{errors.email}}</span>
+							</div>
+						</div>
+						<div class="control-group" ng-class="{'error':errors.name.length > 0}">
+							<label class="control-label" for="userInput">Nome</label>
+							<div class="controls">
+								<input id="userInput" size="16" type="text"
+									ng-model="newUser.name" autofocus /> 
+								<span class="help-inline" 
+									ng-show="errors.name">{{errors.name}}</span>
+							</div>
+						</div>
+						<div class="control-group" ng-class="{'error':errors.password.length > 0}">
+							<label class="control-label" for="passwordInput">Senha</label>
+							<div class="controls">
+								<input id="passwordInput" size="512" type="password"
+									ng-model="newUser.password"/>
+								<span class="help-inline"
+									ng-show="errors.password">{{errors.password}}</span>
+							</div>
+						</div>
+	
+						<div class="control-group" ng-class="{'error':errors.status.length > 0}">
+							<label class="control-label" for="statusInput">Status</label>
+							<div class="controls">
+								<input id="passwordInput" size="512" type="number"
+									ng-model="newUser.status"/>
+								<span class="help-inline" 
+									ng-show="errors.status">{{errors.status}}</span>
+							</div>
+						</div>
+	
+						<div class="control-group">
+							<label class="control-label" for="birthDayInput">Aniversário</label>
+							<div class="controls">
+								<div class="input-append date mks-datepicker">
+									<input id="dtBirthday" type="text" ng-model="newUser.birthDay" />
+									<span class="add-on"> <i class="item-calendar"
+										data-time-icon="icon-time" data-date-icon="icon-calendar">
+									</i>
+									</span>
+								</div>
+								<span class="error" ng-show="errors.birthDay">{{errors.birthDay}}</span>
+							</div>
+						</div>
+	
+						<div class="control-group">
+							<label class="control-label" for="roleInput">Permissões</label>
+							<div class="controls">
+								<input id="roleInput" ui-select2="rolesFKOpt"
+									ng-model="newUser.listRoles" type="hidden" class="span3">
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="planInput">Plano</label>
+							<div class="controls">
+								<input id="planInput" ui-select2="plansFKOpt"
+									ng-model="newUser.plan" type="hidden" class="span3">
+							</div>
+						</div>
+	
+						<!-- We output a list of success messages (appropriately styled!) for the form. -->
+						<ul ng-hide="!successMessages" class="success">
+							<li ng-repeat="message in successMessages">{{message}}</li>
+						</ul>
+	
+						<!-- Output the list of error messages if any. -->
+						<ul ng-hide="!errorMessages" class="error">
+							<li ng-repeat="message in errorMessages">{{message}}</li>
+						</ul>
+						
+					</fieldset>
+	
+				</form>
+	
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-click="save()">Registrar</button>
+			<button class="btn" ng-click="reset()">Limpar</button>
+		</div>
+	</div>
+
+</div>
+
+

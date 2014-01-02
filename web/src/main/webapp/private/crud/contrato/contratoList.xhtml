@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="row-fluid">
+
+		<!-- Inicio Filtro -->
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header">
+					<h2>
+						<i class="icon-list"></i>Contrato
+					</h2>
+					<div class="box-icon">
+						<a href="#contratoFilterModal" data-toggle="modal" ><i class="icon-filter"></i></a>
+					</div>
+				</div>
+				<div class="box-content">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th style="width:10px;"><input type="checkbox" id="headerCheckbox" ng-click="selectAll()"/></th>
+								<th>Cliente</th>
+								<th>Dia Pgto.</th>
+								<th>Vl. Parcelas</th>
+								<th>Período</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="contrato in contratos | orderBy:orderBy">
+								<td style="text-align: center;"><input type="checkbox" ng-click="checkSelection(contrato.isSelected)" ng-model="contrato.isSelected"/></td>
+								<td>{{contrato.cliente.nome}}</td>
+								<td>{{contrato.diaPagto}}</td>
+								<td>{{contrato.vlParcelas|currency}}</td>
+								<td>{{contrato.dtIni|localtime}} <b> à </b> {{contrato.dtFim|localtime}}</td>
+								<td class="center ">
+<!-- 									<a class="btn btn-info"	ng-click="edit(contrato)" href="#modalContrato" data-toggle="modal"	role="button">  -->
+<!-- 										<i class="icon-edit"></i> -->
+<!-- 									</a>  -->
+									<a class="btn btn-info" ng-click="report(contrato)"> 
+										<i class="icon-print"></i>
+									</a> 
+									<a class="btn btn-danger" ng-click="confirmDelete(contrato)"> 
+										<i class="icon-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="pagination pagination-centered" data-pagination=""
+						data-num-pages="numPages()" data-current-page="filter.startRow"
+						data-max-size="filter.pageSize" data-boundary-links="true">
+					</div>
+				</div>
+				<div class="box-footer">
+					<!-- Button to trigger modal -->
+					<button href="#modalContrato" class="btn btn-primary"
+						data-toggle="modal" ng-click="reset()">Novo</button>
+						
+					<button class="btn" ng-click="findByFilter()">Atualizar</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div id="modalContrato" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="modalContratoLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="modalContratoLabel">Cadastro de Contrato</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal" ng-submit="save()">
+					<fieldset>
+						<div class="control-group" ng-class="{'error':errors.cliente.length > 0}">
+							<label class="control-label" for="clienteInput">Cliente</label>
+							<div class="controls">
+								<input id="clienteInput" ui-select2="clienteFKOpt" ng-model="newContrato.cliente" type="hidden" class="span3"/>
+								<span class="help-inline"
+									ng-show="errors.cliente">{{errors.cliente}}</span>
+							</div>
+						</div>
+						
+						<div class="control-group" ng-class="{'error':errors.dtIni.length > 0}">
+							<label class="control-label" for="dtIniInput">Data Inicio</label>
+							<div class="controls">
+								<div class="input-append date mks-datepicker">
+									<input class="span2" id="dtIniInput" type="text" ng-model="newContrato.dtIni"
+										ng-change="calculaNumParcelas()" />
+									<span class="add-on"> <i class="item-calendar"
+										data-time-icon="icon-time" data-date-icon="icon-calendar">
+									</i>
+									</span>
+								</div>
+								<span class="help-inline" ng-show="errors.dtIni">{{errors.dtIni}}</span>
+								
+							</div>
+						</div>
+						
+						<div class="control-group" ng-class="{'error':errors.dtFim.length > 0}">
+							<label class="control-label" for="dtFimInput">Data Fim</label>
+							<div class="controls">
+								<div class="input-append date mks-datepicker">
+									<input class="span2" id="dtFimInput" type="text" ng-model="newContrato.dtFim"
+										ng-change="calculaNumParcelas()" />
+									<span class="add-on"> <i class="item-calendar"
+										data-time-icon="icon-time" data-date-icon="icon-calendar">
+									</i>
+									</span>
+								</div>
+								<span class="help-inline" ng-show="errors.dtFim">{{errors.dtFim}}</span>
+							</div>
+						</div>
+						
+						<div class="control-group" ng-class="{'error':errors.qtParcelas.length > 0}">
+							<label class="control-label" for="qtParcelasInput">Qt Parcelas</label>
+							<div class="controls">
+								<input id="qtParcelasInput" type="number" min="1"
+									ng-model="qtParcelas" class="span2"
+									ng-disabled="true"/>
+								<span class="help-inline" ng-show="errors.qtParcelas">{{errors.qtParcelas}}</span>
+							</div>
+						</div>
+						
+						<div class="control-group" ng-class="{'error':errors.vlParcelas.length > 0}">
+							<label class="control-label" for="vlParcelasInput">Vl Parcelas</label>
+							<div class="controls">
+								<input id="vlParcelasInput" type="number" min="1" step="0.01"
+									ng-model="newContrato.vlParcelas" class="span2"/>
+								<span class="help-inline" ng-show="errors.vlParcelas">{{errors.vlParcelas}}</span>
+							</div>
+						</div>
+						
+						<div class="control-group" ng-class="{'error':errors.diaPagto.length > 0}">
+							<label class="control-label" for="pagtoInput">Dia Pagto</label>
+							<div class="controls">
+								<input id="pagtoInput" type="number" min="1" max="30"
+									ng-model="newContrato.diaPagto" class="span1"/>
+								<span class="help-inline" 
+									ng-show="errors.diaPagto">{{errors.diaPagto}}</span>
+							</div>
+						</div>
+	
+	
+						
+					</fieldset>
+					
+					<!-- We output a list of success messages (appropriately styled!) for the form. -->
+					<ul ng-hide="!successMessages" class="success">
+						<li ng-repeat="message in successMessages">{{message}}</li>
+					</ul>
+
+					<!-- Output the list of error messages if any. -->
+					<ul ng-hide="!errorMessages" class="error">
+						<li ng-repeat="message in errorMessages">{{message}}</li>
+					</ul>
+	
+				</form>
+	
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-click="save()">Registrar</button>
+			<button class="btn" ng-click="reset()">Limpar</button>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="contratoFilterModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="contratoFilterModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="contratoFilterModalLabel">Filtro</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<div class="box-content">
+						<div class="control-group">
+							<label class="control-label" for="anoFilter">Ano</label>
+							<div class="controls">
+								<input id="anoFilter" type="number" min="0" max="9999"
+									ng-model="filter.ano" class="span1"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary"
+					data-dismiss="modal"
+					ng-click="findByFilter()">Aplicar Filtro</button>
+		</div>
+	</div>
+	
+</div>

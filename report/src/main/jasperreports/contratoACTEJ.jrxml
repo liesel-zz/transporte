@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratoACTEJ" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3255b976-f56b-46d0-82cc-4de93b11386b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="corpo" class="java.lang.String"/>
+	<parameter name="rodape1" class="java.lang.String"/>
+	<parameter name="rodape2" class="java.lang.String"/>
+	<parameter name="localdata" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e7c9fa0f-7de1-4cba-865d-0cf477f2b03e" x="0" y="0" width="555" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3c290201-411e-46d3-a687-d5653e76460b" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="12"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{corpo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="178">
+			<textField>
+				<reportElement uuid="f5cce90c-6470-4751-acbb-fee6ceabdc7c" x="291" y="165" width="264" height="13"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{localdata}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="808580af-e124-4dbe-a4c3-879d45d160b9" x="112" y="27" width="82" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CONTRATANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c978a0ab-1a43-4838-9cdf-bf1f670c7afb" x="369" y="27" width="74" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CONTRATADO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="984c854a-9530-431d-82d9-127cad9507c6" x="94" y="26" width="116" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="82b5b14a-f1e4-4067-a736-3748cce83e96" x="350" y="25" width="116" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="42eef53c-6568-48a3-ad61-fac64bc186ae" x="225" y="77" width="116" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="f7a235d8-66f1-43f6-a18d-7d548dca207e" x="380" y="77" width="116" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="4c7db568-0966-479b-8d41-1413b4f66e76" x="399" y="78" width="84" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[TESTEMUNHA 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a76e2659-3f26-4f39-8d7a-5eaeae3ca593" x="243" y="78" width="82" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[TESTEMUNHA1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aade938c-a150-4ddb-af4c-21856f0d85b1" x="225" y="91" width="116" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CPF: _______________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2af654a7-2c47-4d60-a6c1-701de98049e1" x="380" y="91" width="116" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CPF: _______________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5db634d4-6df2-44a1-8675-abc237bfb454" x="95" y="76" width="41" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[FIADOR]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="9758ce95-fb20-4abc-b6bb-9d7ca2578317" x="59" y="76" width="116" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="d99ca63b-111b-4709-8ca3-28641381dfdb" x="59" y="91" width="116" height="13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[CPF: _______________]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4a2eda1f-6ed0-4546-ab57-591e7154816d" x="0" y="117" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rodape1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="03bc08bd-db72-4c00-952a-9b5e69cf6574" x="0" y="137" width="555" height="29"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rodape2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2add8481-12e4-43b6-8e2c-09d7044adf97" x="0" y="165" width="80" height="13"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="bab838aa-8d7a-47f1-a355-104d216e5ce9" x="80" y="165" width="40" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

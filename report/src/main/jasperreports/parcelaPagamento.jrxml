@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="parcelaPagamento" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="ea94d572-1d8f-42cb-8342-7cbe40bc2f79">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="transportadorNome" class="java.lang.String"/>
+	<field name="transportadorTelefone" class="java.lang.String"/>
+	<field name="clienteNome" class="java.lang.String"/>
+	<field name="estudantesNome" class="java.lang.String"/>
+	<field name="parcelaNumero" class="java.lang.Integer"/>
+	<field name="dtVencimento" class="java.util.Date"/>
+	<field name="valor" class="java.lang.Float"/>
+	<field name="logotipo" class="java.io.InputStream"/>
+	<field name="logotipo2" class="java.io.InputStream"/>
+	<detail>
+		<band height="180" splitType="Stretch">
+			<line>
+				<reportElement uuid="26489adb-6702-491e-84e8-73bbbb6ff24d" x="0" y="166" width="567" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="93404e0d-ad53-4758-a170-bc1e05c459f2" x="283" y="1" width="1" height="150"/>
+			</line>
+			<frame>
+				<reportElement uuid="9fec3f17-03c0-4ae3-8425-2a520beed188" x="0" y="0" width="270" height="152"/>
+				<elementGroup>
+					<rectangle>
+						<reportElement uuid="1771331d-544a-4d77-8863-c42ec7fa98d7" x="0" y="92" width="270" height="15"/>
+					</rectangle>
+					<staticText>
+						<reportElement uuid="e4829ac2-dffe-4b69-9775-94eab8c04af0" x="0" y="54" width="270" height="38" forecolor="#0000CC"/>
+						<textElement textAlignment="Center">
+							<font size="9"/>
+						</textElement>
+						<text><![CDATA[Rua: Pref. Helmuth Fallgatter, 738
+Boa Vista – Fone:(47) 3433-9274
+CEP: 89205-300      JOINVILLE-SC
+]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="ca896788-1eeb-4669-ad0e-ea0e40582c1e" x="185" y="137" width="39" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Valor:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="b54339d1-1866-4da4-a39d-514482bf07f8" x="0" y="107" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Contratante:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="8f0508b0-ac40-4186-84d9-140bd6ed42a9" x="67" y="137" width="64" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Vencimento:]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="7a085faf-7394-42a2-b985-7fe9d8a851a8" x="66" y="107" width="204" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{clienteNome}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="0058e3d0-bc6d-4ab1-b5ca-7f2567f66edc" x="22" y="137" width="45" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle"/>
+						<text><![CDATA[ª Parcela]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="06be113f-cfc7-4e8a-be31-7fe87db4812b" x="203" y="92" width="67" height="15"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{transportadorTelefone}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="003ec4b9-b90c-4d13-8689-356c1f4dbb5d" x="66" y="92" width="107" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{transportadorNome}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="65e00b9d-079f-46cb-aeac-091085a211a2" x="131" y="137" width="54" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dtVencimento}]]></textFieldExpression>
+					</textField>
+					<image hAlign="Left" isUsingCache="false">
+						<reportElement uuid="953286f6-e6c4-4814-91e4-fc6c6039f102" x="0" y="0" width="113" height="54"/>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<imageExpression><![CDATA[$F{logotipo}]]></imageExpression>
+					</image>
+					<textField pattern="###0.00;(###0.00)">
+						<reportElement uuid="bc2b7d7e-6908-4c99-849d-7898874aea04" x="225" y="137" width="45" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="c05a05aa-3aa0-4b88-983d-3de7642d53c5" x="173" y="92" width="29" height="15"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[Fone:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="13e384cc-2b51-439b-8ddd-80b5c147b088" x="113" y="0" width="157" height="54" forecolor="#0000CC"/>
+						<textElement textAlignment="Center" verticalAlignment="Bottom">
+							<font size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[ASSOCIAÇÃO DOS CONDUTORES
+E TRANSPORTADORES
+ESCOLARES  DE JOINVILLE
+ACTEJ
+]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="ab45d47d-6e88-4467-be6a-7595fee63c4a" x="66" y="122" width="204" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{estudantesNome}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="f4dd9a38-bbd1-40af-ac26-d1376d541410" x="0" y="137" width="22" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{parcelaNumero}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="4680b13d-5970-4dc2-af02-bf2c837ba86c" x="0" y="122" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Menor:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="0e1509aa-2b73-49aa-a729-398d667ff0df" x="0" y="92" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Contratada:]]></text>
+					</staticText>
+				</elementGroup>
+			</frame>
+			<frame>
+				<reportElement uuid="3bb1c61b-5884-44cf-9f0e-45ed725084e3" x="297" y="0" width="270" height="152"/>
+				<elementGroup>
+					<rectangle>
+						<reportElement uuid="12871ff8-7be7-4e17-95cd-4dcd9b5920bd" x="0" y="92" width="270" height="15"/>
+					</rectangle>
+					<staticText>
+						<reportElement uuid="2579247d-dfee-4935-908a-19f699c46d95" x="0" y="54" width="270" height="38" forecolor="#0000CC"/>
+						<textElement textAlignment="Center">
+							<font size="9"/>
+						</textElement>
+						<text><![CDATA[Rua: Pref. Helmuth Fallgatter, 738
+Boa Vista – Fone:(47) 3433-9274
+CEP: 89205-300      JOINVILLE-SC
+]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="28263d76-4e75-48be-8bbf-ba9e9069b6e0" x="185" y="137" width="39" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Valor:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="c19890f5-4b34-4d48-8f86-e984c8e608b4" x="0" y="107" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Contratante:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="f6fd30ca-ee1f-435d-ba7d-b069fa4e918b" x="65" y="137" width="64" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Vencimento:]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="82e86411-ae40-4e16-ace4-f8ca14528ae3" x="66" y="107" width="204" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{clienteNome}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="12050f43-f71d-47f8-b8df-8ca698f62c98" x="20" y="137" width="45" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle"/>
+						<text><![CDATA[ª Parcela]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="4102bffd-90f9-4ee4-ac75-9806d3e00d4e" x="203" y="92" width="67" height="15"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{transportadorTelefone}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="c8c96720-0307-415f-af7d-c8e20f93d3bc" x="66" y="92" width="107" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{transportadorNome}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="efbabb50-f6b9-4778-9c63-29dbc323f06c" x="130" y="137" width="55" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dtVencimento}]]></textFieldExpression>
+					</textField>
+					<image hAlign="Left" isUsingCache="false">
+						<reportElement uuid="b95eddc4-dd39-4818-89b4-1888111f28ad" x="0" y="0" width="113" height="54"/>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<imageExpression><![CDATA[$F{logotipo2}]]></imageExpression>
+					</image>
+					<textField pattern="###0.00;(###0.00)">
+						<reportElement uuid="ffdf6a5f-98e7-4b09-b4a5-c001a9d97a7b" x="225" y="137" width="45" height="15"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="e4ecf692-d3a4-424d-ad31-1076a1632a69" x="173" y="92" width="29" height="15"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[Fone:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="88f62900-1b3c-4065-9849-6886d42097b9" x="113" y="0" width="157" height="54" forecolor="#0000CC"/>
+						<textElement textAlignment="Center" verticalAlignment="Bottom">
+							<font size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[ASSOCIAÇÃO DOS CONDUTORES
+E TRANSPORTADORES
+ESCOLARES  DE JOINVILLE
+ACTEJ
+]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="18e01e69-35a3-4db0-9baf-893f3f08aa86" x="66" y="122" width="204" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{estudantesNome}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="d11768a5-5afa-4ad4-b633-71a6cab48710" x="0" y="136" width="22" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{parcelaNumero}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="081d1181-be4b-42ed-8cad-1b232bd0b208" x="0" y="122" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Menor:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="b13dda89-20ca-4668-874e-c84071aebf93" x="0" y="92" width="65" height="15"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<text><![CDATA[Contratada:]]></text>
+					</staticText>
+				</elementGroup>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

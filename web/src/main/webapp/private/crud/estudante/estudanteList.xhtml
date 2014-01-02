@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="row-fluid" ng-init="findByFilter()">
+
+		<!-- Inicio Filtro -->
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header">
+					<h2>
+						<i class="icon-list"></i>Resultado
+					</h2>
+					<div class="box-icon">
+						<a href="#estudanteFilterModal" data-toggle="modal" ><i class="icon-filter"></i></a>
+					</div>
+				</div>
+				<div class="box-content">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Data Nasc</th>
+								<th>Celular</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="item in items | orderBy:orderBy">
+								<td>{{item.id}}</td>
+								<td>{{item.nome}}</td>
+								<td>{{item.dataNasc | localtime}}</td>
+								<td>{{item.celular | fone}}</td>
+								<td class="center ">
+									<a class="btn btn-info" ng-click="edit(item)" href="#modalForm" data-toggle="modal" role="button"> 
+										<i class="icon-edit"></i>
+									</a> 
+									<a class="btn btn-danger" ng-click="confirmDelete(item)"> 
+										<i class="icon-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="pagination pagination-centered" data-pagination=""
+						data-num-pages="numPages()" data-current-page="filter.startRow"
+						data-max-size="filter.pageSize" data-boundary-links="true">
+					</div>
+					<div class="box-footer">
+						<!-- Button to trigger modal -->
+						<button href="#modalForm" class="btn btn-primary"
+							data-toggle="modal" ng-click="reset()">Novo</button>
+						<button class="btn primary" ng-click="findByFilter()">Atualizar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="modalForm" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Cadastro de Estudantes</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<tabset>
+		    			<tab heading="Geral">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="nomeInput">Nome</label>
+									<div class="controls">
+										<input id="nomeInput" type="text"
+											ng-model="currentItem.estudante.nome" ng-required="true"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="emailInput">Email</label>
+									<div class="controls">
+										<input id="emailInput" size="16" type="email"
+											ng-model="currentItem.estudante.email"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="celularInput">Celular</label>
+									<div class="controls">
+										<input id="celularInput" type="text" ui-mask="(99) 9999-9999?9" 
+											ng-model="currentItem.estudante.celular" class="span2"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="dataNascInput">Data Nasc</label> 
+								  	<div class="controls"> 
+										<div class="input-append date mks-datepicker">
+											<input id="dataNascInput" type="text" ng-model="currentItem.estudante.dataNasc" class="span2"/>
+											<span class="add-on">
+												<i class="item-calendar" data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+									    	</span>
+										</div>
+								  	</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="clienteInput">Cliente</label>
+									<div class="controls">
+										<input id="clienteInput" ui-select2="clienteFKOpt" ng-model="currentItem.estudante.cliente" type="hidden" class="span3"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="instituicaoInput">Instituições</label>
+									<div class="controls">
+										<input id="instituicaoInput" ui-select2="instituicaoFKOpt" ng-model="currentItem.estudante.instituicoes" type="hidden" class="span3"/>
+									</div>
+								</div>
+								
+							</fieldset>
+						</tab>
+						<tab heading="Endereço">
+							<fieldset>
+							
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>End. Desc.</th>
+											<th>Endereço</th>
+											<th>Bairro</th>
+											<th>Cidade - UF</th>
+											<th>Ações</th>
+										</tr>
+									</thead>
+			
+									<tbody>
+										<tr ng-repeat="end in currentItem.enderecos">
+											<td>{{end.descricao}}</td>
+											<td>{{end.endereco.endereco}}, {{end.endereco.numero}}</td>
+											<td>{{end.endereco.bairro}}</td>
+											<td>{{end.endereco.cidade}} - {{end.endereco.uf}}</td>
+											<td class="center ">
+												<a class="btn btn-info" ng-click="editEndereco(end)" href="#enderecoModal" data-toggle="modal" role="button"> 
+													<i class="icon-edit"></i>
+												</a> 
+												<a class="btn btn-danger" ng-click="deleteEndereco(end)"> 
+													<i class="icon-trash"></i>
+												</a>
+											</td>
+										</tr>
+									</tbody>
+			
+								</table>
+								<button href="#enderecoModal" class="btn btn-primary" data-toggle="modal" ng-click="resetEnd()">Novo Endereço</button>
+								
+							</fieldset>
+						</tab>
+					</tabset>					
+				</form>
+			</div>			
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-click="save()"
+				data-dismiss="modal" ng-disabled="currentItem.enderecos == undefined || currentItem.enderecos.length == 0">Registrar</button>
+			<button class="btn" ng-click="reset()">Limpar</button>
+		</div>
+	</div>
+	
+	<!-- Modal Endereco-->
+	<div id="enderecoModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="myEnderecoModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myEnderecoModalLabel">Endereço</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="descendInput">Desc. End.</label>
+							<div class="controls">
+								<input id="descendInput" type="text" ng-model="currentEndereco.descricao" ng-required="true" ng-disabled="isEditingEnd"/>
+							</div>
+						</div>
+					
+						<div class="control-group">
+							<label class="control-label" for="cepInput">CEP</label>
+							<div class="controls">
+								<input id="cepInput" class="span2" type="text" ng-blur="cepBlur(currentEndereco.endereco.cep)"
+									ui-mask="99999-999" ng-model="currentEndereco.endereco.cep"/>
+							</div>
+						</div>
+					
+						<div class="control-group">
+							<label class="control-label" for="enderecoInput">Endereço</label>
+							<div class="controls">
+								<input id="enderecoInput" type="text"
+									ng-model="currentEndereco.endereco.endereco" ng-required="true"/>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="numeroInput">Número</label>
+							<div class="controls">
+								<input id="numeroInput" class="span1" type="number" min="0"
+									ng-model="currentEndereco.endereco.numero"/>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="complementoInput">Complemento</label>
+							<div class="controls">
+								<input id="complementoInput" type="text"
+									ng-model="currentEndereco.endereco.complemento"/>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="bairroInput">Bairro</label>
+							<div class="controls">
+								<input id="bairroInput" type="text"
+									ng-model="currentEndereco.endereco.bairro" ng-required="true"/>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="cidadeInput">Cidade</label>
+							<div class="controls">
+								<input id="cidadeInput" type="text"
+									ng-model="currentEndereco.endereco.cidade" ng-required="true"/>
+							</div>
+						</div>
+	
+						<div class="control-group">
+							<label class="control-label" for="estadoInput">UF</label>
+							<div class="controls">
+								<select id="estadoInput" ui-select2 ng-model="currentEndereco.endereco.uf" class="span2" data-placeholder="Escolha um estado" ng-required="true">
+								    <option value=""></option>
+								    <option ng-repeat="state in ufList" value="{{state.id}}">{{state.id}} - {{state.name}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label" for="paisInput">País</label>
+							<div class="controls">
+								<input id="paisInput" type="text"
+									ng-model="currentEndereco.endereco.pais" ng-required="true"/>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label class="control-label">Situação</label>
+							<div class="controls">
+								<span class="label label-important" ng-show="addressChanged" title="É necessário validar o endereço" data-rel="tooltip"><i class="icon-remove-sign"></i></span>
+								<span class="label label-success" ng-show="!addressChanged"><i class="icon-ok-sign"></i></span>
+								<a href="#mapEstudanteModal" data-toggle="modal" ng-click="validateMap()">Clique aqui</a> para validar o endereço						
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary" data-dismiss="modal" ng-click="saveEndereco()">Salvar</button>
+		</div>
+	</div>
+	
+	<!-- Modal MAP-->
+	<div id="mapEstudanteModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="mapEstudanteModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="mapEstudanteModalLabel">Mapa</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<mks-map endereco="currentEndereco.endereco.endereco" numero="currentEndereco.endereco.numero" 
+								bairro="currentEndereco.endereco.bairro" cidade="currentEndereco.endereco.cidade" 
+								estado="currentEndereco.endereco.uf" cep="currentEndereco.endereco.cep" 
+								latitude="currentEndereco.endereco.latitude" longitude="currentEndereco.endereco.longitude"
+								map-name="EstudanteMap"></mks-map>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary"
+					data-dismiss="modal"
+					ng-click="validateMapOK()">OK</button>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="estudanteFilterModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="estudanteFilterModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="estudanteFilterModalLabel">Filtro</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<div class="box-content">
+						<div class="control-group">
+							<label class="control-label" for="nomeFilter">Nome</label>
+							<div class="controls">
+								<input id="nomeFilter" type="text" ng-model="filter.nome"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary"
+					data-dismiss="modal"
+					ng-click="findByFilter()">Aplicar Filtro</button>
+		</div>
+	</div>
+	
+</div>

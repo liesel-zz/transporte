@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<div class="row-fluid" ng-init="findByFilter()">
+
+		<!-- Inicio Filtro -->
+		<div class="row-fluid">
+			<div class="box span12">
+				<div class="box-header">
+					<h2>
+						<i class="icon-list"></i>Instituições
+					</h2>
+					<div class="box-icon">
+						<a href="#instituicaoFilterModal" data-toggle="modal" ><i class="icon-filter"></i></a>
+					</div>
+				</div>
+				<div class="box-content">
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nome</th>
+								<th>Telefone</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="item in items | orderBy:orderBy">
+								<td>{{item.id}}</td>
+								<td>{{item.nomeAbrev}}</td>
+								<td>{{item.telefone | fone}}</td>
+								<td class="center ">
+									<a class="btn btn-info" ng-click="edit(item)" href="#modalForm" data-toggle="modal" role="button"> 
+										<i class="icon-edit"></i>
+									</a> 
+									<a class="btn btn-danger" ng-click="confirmDelete(item)"> 
+										<i class="icon-trash"></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+					<div class="pagination pagination-centered" data-pagination=""
+						data-num-pages="numPages()" data-current-page="filter.startRow"
+						data-max-size="filter.pageSize" data-boundary-links="true">
+					</div>
+					<div class="box-footer">
+						<!-- Button to trigger modal -->
+						<button href="#modalForm" class="btn btn-primary"
+							data-toggle="modal" ng-click="reset()">Novo</button>
+						<button class="btn primary" ng-click="findByFilter()">Atualizar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="modalForm" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Cadastro de Instituições</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<tabset>
+		    			<tab heading="Geral">
+							<fieldset>
+								<div class="control-group" ng-class="{'error':errors.nome.length > 0}">
+									<label class="control-label" for="nomeInput">Nome</label>
+									<div class="controls">
+										<input id="nomeInput" type="text"
+											ng-model="currentItem.nome" ng-required="true"/>
+										<span class="help-inline" ng-show="errors.nome">{{errors.nome}}</span>
+									</div>
+								</div>
+								<div class="control-group" ng-class="{'error':errors.nomeAbrev.length > 0}">
+									<label class="control-label" for="nomeAbrevInput">Nome Abrev.</label>
+									<div class="controls">
+										<input id="nomeAbrevInput" type="text"
+											ng-model="currentItem.nomeAbrev" ng-required="true"/>
+										<span class="help-inline" ng-show="errors.nomeAbrev">{{errors.nomeAbrev}}</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="emailInput">Email</label>
+									<div class="controls">
+										<input id="emailInput" type="email"
+											ng-model="currentItem.email"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="websiteInput">Site</label>
+									<div class="controls">
+										<input id="websiteInput" type="url"
+											ng-model="currentItem.website"/>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="cnpjInput">CNPJ</label> 
+								  	<div class="controls"> 
+								  		<div class="input-append">
+											<input id="cnpjInput" ui-mask="99.999.999/9999-99" 
+												ng-model="currentItem.cnpj" class="span2"/>							  
+								  	  	</div>
+								  	</div>
+								</div>
+			
+								<div class="control-group">
+									<label class="control-label" for="telefoneInput">Telefone</label>
+									<div class="controls">
+										<input id="telefoneInput" type="text" ui-mask="(99) 9999-9999" 
+											ng-model="currentItem.telefone" class="span2"/>
+									</div>
+								</div>
+								
+							</fieldset>
+						</tab>
+						<tab heading="Endereço">
+							<fieldset>
+								<div class="control-group" ng-class="{'error':errors.cep.length > 0}">
+									<label class="control-label" for="cepInput">CEP</label>
+									<div class="controls">
+										<input id="cepInput" class="span2" type="text" ng-blur="cepBlur(currentItem.endereco.cep)"
+											ui-mask="99999-999" ng-model="currentItem.endereco.cep"/>
+											<span class="help-inline" ng-show="errors.cep">{{errors.cep}}</span>
+									</div>
+								</div>
+							
+								<div class="control-group" ng-class="{'error':errors.endereco.length > 0}">
+									<label class="control-label" for="enderecoInput">Endereço</label>
+									<div class="controls">
+										<input id="enderecoInput" type="text"
+											ng-model="currentItem.endereco.endereco"/>
+										<span class="help-inline" ng-show="errors.endereco">{{errors.endereco}}</span>
+									</div>
+								</div>
+								
+								<div class="control-group" ng-class="{'error':errors.numero.length > 0}">
+									<label class="control-label" for="numeroInput">Número</label>
+									<div class="controls">
+										<input id="numeroInput" class="span1" type="number" min="0"
+											ng-model="currentItem.endereco.numero"/>
+										<span class="help-inline" ng-show="errors.numero">{{errors.numero}}</span>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="complementoInput">Complemento</label>
+									<div class="controls">
+										<input id="complementoInput" type="text"
+											ng-model="currentItem.endereco.complemento"/>
+									</div>
+								</div>
+								
+								<div class="control-group" ng-class="{'error':errors.bairro.length > 0}">
+									<label class="control-label" for="bairroInput">Bairro</label>
+									<div class="controls">
+										<input id="bairroInput" type="text"
+											ng-model="currentItem.endereco.bairro"/>
+										<span class="help-inline" ng-show="errors.bairro">{{errors.bairro}}</span>
+									</div>
+								</div>
+								
+								<div class="control-group" ng-class="{'error':errors.cidade.length > 0}">
+									<label class="control-label" for="cidadeInput">Cidade</label>
+									<div class="controls">
+										<input id="cidadeInput" type="text"
+											ng-model="currentItem.endereco.cidade"/>
+										<span class="help-inline" ng-show="errors.cidade">{{errors.cidade}}</span>
+									</div>
+								</div>
+	
+								<div class="control-group" ng-class="{'error':errors.uf.length > 0}">
+									<label class="control-label" for="estadoInput">UF</label>
+									<div class="controls">
+										<select id="estadoInput" ui-select2 ng-model="currentItem.endereco.uf" class="span2" data-placeholder="Escolha um estado">
+										    <option value=""></option>
+										    <option ng-repeat="state in ufList" value="{{state.id}}">{{state.name}}</option>
+										</select>
+										<span class="help-inline" ng-show="errors.uf">{{errors.uf}}</span>
+									</div>
+								</div>
+								
+								<div class="control-group" ng-class="{'error':errors.pais.length > 0}">
+									<label class="control-label" for="paisInput">País</label>
+									<div class="controls">
+										<input id="paisInput" type="text"
+											ng-model="currentItem.endereco.pais"/>
+										<span class="help-inline" ng-show="errors.pais">{{errors.pais}}</span>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label">Situação</label>
+									<div class="controls">
+										<span class="label label-important" ng-show="addressChanged" title="É necessário validar o endereço" data-rel="tooltip"><i class="icon-remove-sign"></i></span>
+										<span class="label label-success" ng-show="!addressChanged"><i class="icon-ok-sign"></i></span>
+										<a href="#instituicaoMapModal" data-toggle="modal" ng-click="validateMap()">Clique aqui</a> para validar o endereço						
+									</div>
+								</div>
+								
+							</fieldset>
+						</tab>
+					</tabset>
+					<!-- We output a list of success messages (appropriately styled!) for the form. -->
+					<ul ng-hide="!successMessages" class="success">
+						<li ng-repeat="message in successMessages">{{message}}</li>
+					</ul>
+
+					<!-- Output the list of error messages if any. -->
+					<ul ng-hide="!errorMessages" class="error">
+						<li ng-repeat="message in errorMessages">{{message}}</li>
+					</ul>					
+				</form>
+			</div>			
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" ng-click="save()" ng-disabled="addressChanged">Salvar</button>
+			<button class="btn" ng-click="reset()">Limpar</button>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="instituicaoMapModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="instituicaoMapModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="instituicaoMapModalLabel">Mapa</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<mks-map endereco="currentItem.endereco.endereco" numero="currentItem.endereco.numero" 
+								bairro="currentItem.endereco.bairro" cidade="currentItem.endereco.cidade" 
+								estado="currentItem.endereco.uf" cep="currentItem.endereco.cep" 
+								latitude="currentItem.endereco.latitude" longitude="currentItem.endereco.longitude"
+								map-name="InstituicaoMap"></mks-map>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary"
+					data-dismiss="modal"
+					ng-click="validateMapOK()">OK</button>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="instituicaoFilterModal" class="modal hide fade" data-width="580px"
+		role="dialog" aria-labelledby="instituicaoFilterModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="instituicaoFilterModalLabel">Filtro</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+				<form class="form-horizontal">
+					<div class="box-content">
+						<div class="control-group">
+							<label class="control-label" for="nomeFilter">Nome</label>
+							<div class="controls">
+								<input id="nomeFilter" type="text" ng-model="filter.nome"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-primary"
+					data-dismiss="modal"
+					ng-click="findByFilter()">Aplicar Filtro</button>
+		</div>
+	</div>
+	
+</div>
