@@ -6,7 +6,7 @@
 		pool-name="TransportePOOL" enabled="true" use-java-context="true" jta="true"
 		use-ccm="true">
 
-		<connection-url>jdbc:postgresql://127.0.0.1:5432/transporte</connection-url>
+		<connection-url>jdbc:postgresql://vader.streamsoft.com.br:5432/transporte</connection-url>
 		<driver>postgresql</driver>
 
 		<pool>
@@ -17,7 +17,7 @@
 
 		<security>
 			<user-name>postgres</user-name>
-			<password>041286</password>
+			<password>Stream@soft</password>
 		</security>
 	</datasource>
 </datasources>
